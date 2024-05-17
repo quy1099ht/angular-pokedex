@@ -1,0 +1,52 @@
+<div class="page-container">
+  <div class="image-container">
+    <img class="image-size"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png">
+  </div>
+
+  <div class="grid-container2">
+    <div class="select-container">
+      <span>Sort By:   </span>
+      <select id="sort" (change)="onSortChange($event)">
+        <option *ngFor="let option of sortingOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+    <div class="select-container">
+      <span>Fitler By Type:   </span>
+      <select id="filter" (change)="onFilterChange($event)">
+        <option *ngFor="let option of pokemonTypes" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let pokemon of listOfPokemons">
+      <div>
+        <img class="item-image" src="https://media.forgecdn.net/avatars/797/138/638157929383635682.png" alt="">
+      </div>
+      <div class="item-info">
+        <span class="pokemon-detail__id">{{pokemon.number | formatNumber}}</span>
+        <span class="pokemon-detail__name">{{pokemon.name}}</span>
+        <div class="pokemon-type-container">
+          <span class="pokemon-type-item">{{getPokemonType(pokemon.type_1)}}</span>
+          <span *ngIf="pokemon.type_2 !== null" class="pokemon-type-item">{{getPokemonType(pokemon.type_2)}}</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="listOfPokemons.length !== 0" class="pagination-container">
+    <button (click)="changePage(false)" [disabled]="currentPage === 1" class="previous">&laquo; Previous</button>
+    <button (click)="changePage(true)" [disabled]="currentPage === finalPage" class="next">Next &raquo;</button>
+  </div>
+
+  <div class="loading-container">
+    <div *ngIf="listOfPokemons.length === 0" class="loader"></div>
+  </div>
+
+</div>

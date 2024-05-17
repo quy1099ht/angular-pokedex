@@ -1,0 +1,166 @@
+/* DashboardComponent's private CSS styles */
+
+h2 {
+  text-align: center;
+}
+.grid-container2 {
+  display: grid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  grid-template-columns: 1fr 1fr;
+  /* Two equal columns */
+  background-color: white;
+}
+
+select {
+  padding: 8px;
+  font-size: 16px;
+}
+
+
+/* grid.component.css */
+.grid-container {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  /* Two equal columns */
+
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-size {
+  height: 300px;
+}
+
+.grid-item {
+  background-color: #fff;
+  border-radius: 5px;
+  height: 104px;
+  border: 1px solid #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-container {
+  margin-left: 20px;
+}
+
+.item-image {
+  height: 74px;
+  width: 74px;
+}
+
+button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+th {
+  padding: 12px;
+  text-align: center;
+  border: 3px solid #ddd;
+
+  background-color: #f2f2f2;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  width: 194px;
+  margin-left: 20px;
+}
+
+.pokemon-detail__id {
+  font-weight: 600;
+  font-size: 18px;
+  color: #dad8cc;
+}
+
+.pokemon-detail__name {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #232c33;
+}
+
+.pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+/* input[type="checkbox"] {
+  margin-right: 8px;
+} */
+
+.loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.pokemon-type-container {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.pokemon-type-item {
+  height: 20;
+  width: 57.5px;
+  display: flex;
+  justify-content: center;
+  border: 3px solid #ddd;
+  border-radius: 100px;
+}
