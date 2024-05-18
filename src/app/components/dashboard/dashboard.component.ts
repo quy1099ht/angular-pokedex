@@ -35,20 +35,13 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pokemonService.getListOfPokemons({
-      pageNumber: this.currentPage,
-      sort: this.selectedSort,
-      filterType: this.selectedFilter,
-    }).subscribe({
-      next: (val => {
-        this.listOfPokemons = val.data
-        this.finalPage = val.meta.last_page;
-      }),
-    })
+    this.fetchPokemonsData()
 
-    this.pokemonService.getPokemonTypes().subscribe({next: (val => {
-      this.pokemonTypes = [{id: -1, name: "None"}].concat(val.data);
-    })})
+    this.pokemonService.getPokemonTypes().subscribe({
+      next: (val => {
+        this.pokemonTypes = [{ id: -1, name: "None" }].concat(val.data);
+      })
+    })
 
   }
 
@@ -56,51 +49,24 @@ export class DashboardComponent implements OnInit {
     const target = event.target as HTMLSelectElement;
     this.selectedSort = target.value as SortParam;
     this.listOfPokemons = []
-    this.pokemonService.getListOfPokemons({
-      pageNumber: this.currentPage,
-      sort: this.selectedSort,
-      filterType: this.selectedFilter,
-    }).subscribe({
-      next: (val => {
-        this.listOfPokemons = val.data
-        this.finalPage = val.meta.last_page;
-      }),
-    })
+    this.fetchPokemonsData()
   }
-  
+
   onFilterChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedFilter = target.value as unknown as number;
     this.listOfPokemons = [];
-    this.pokemonService.getListOfPokemons({
-      pageNumber: this.currentPage,
-      sort: this.selectedSort,
-      filterType: this.selectedFilter,
-    }).subscribe({
-      next: (val => {
-        this.listOfPokemons = val.data
-        this.finalPage = val.meta.last_page;
-      }),
-    })
+    this.fetchPokemonsData();
   }
 
   getPokemonType(typeId: number) {
     return this.pokemonTypes.filter(val => val.id === typeId)[0].name;
   }
-  
+
   changePage(isPlus: boolean) {
     this.currentPage += isPlus ? 1 : -1;
     this.listOfPokemons = [];
-    this.pokemonService.getListOfPokemons({
-      pageNumber: this.currentPage,
-      sort: this.selectedSort,
-      filterType: this.selectedFilter,
-    }).subscribe({
-      next: (val => {
-        this.listOfPokemons = val.data
-        this.finalPage = val.meta.last_page;
-      }),
-    })
+    this.fetchPokemonsData()
   }
 
   toggleModal() {
@@ -110,12 +76,27 @@ export class DashboardComponent implements OnInit {
   getPokemonInfo(id: string) {
     const pokemon = this.listOfPokemons.filter(pkm => pkm.id === id)[0];
 
-    this.pokemonService.getPokemonSprite(pokemon.id).subscribe({next:(blob)=>{
-      let objectURL = URL.createObjectURL(blob);    
-      const url = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      pokemon.image = url;      
-      this.selectedPokemon = pokemon;
-      this.showModal = true;
-    },})
+    this.pokemonService.getPokemonSprite(pokemon.id).subscribe({
+      next: (blob) => {
+        let objectURL = URL.createObjectURL(blob);
+        const url = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        pokemon.image = url;
+        this.selectedPokemon = pokemon;
+        this.showModal = true;
+      },
+    })
+  }
+
+  fetchPokemonsData() {
+    this.pokemonService.getListOfPokemons({
+      pageNumber: this.currentPage,
+      sort: this.selectedSort,
+      filterType: this.selectedFilter,
+    }).subscribe({
+      next: (val => {
+        this.listOfPokemons = val.data
+        this.finalPage = val.meta.last_page;
+      }),
+    })
   }
 }

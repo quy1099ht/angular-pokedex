@@ -53,11 +53,6 @@ select {
   margin-left: 20px;
 }
 
-.item-image {
-  height: 74px;
-  width: 74px;
-}
-
 button {
   text-decoration: none;
   display: inline-block;
@@ -92,26 +87,6 @@ th {
   border: 3px solid #ddd;
 
   background-color: #f2f2f2;
-}
-
-.item-info {
-  display: flex;
-  flex-direction: column;
-  width: 194px;
-  margin-left: 20px;
-}
-
-.pokemon-detail__id {
-  font-weight: 600;
-  font-size: 18px;
-  color: #dad8cc;
-}
-
-.pokemon-detail__name {
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: capitalize;
-  color: #232c33;
 }
 
 .pagination-container {
@@ -150,22 +125,4 @@ th {
   justify-content: center;
   width: 100%;
   padding-top: 40px;
-}
-
-.pokemon-type-container {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-
-.pokemon-type-item {
-  height: 20;
-  width: 57.5px;
-  display: flex;
-  justify-content: center;
-  border: 3px solid #ddd;
-  border-radius: 100px;
-}
-
-.pointer {
-  cursor: pointer;
 }

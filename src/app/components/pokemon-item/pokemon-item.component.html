@@ -1,0 +1,15 @@
+<div class="grid-item pointer">
+    <div>
+        <img class="item-image" src="https://media.forgecdn.net/avatars/797/138/638157929383635682.png" alt="">
+    </div>
+    <div class="item-info">
+        <span class="pokemon-detail__id">{{pokemon.number | formatNumber}}</span>
+        <span class="pokemon-detail__name">{{pokemon.name}}</span>
+        <div class="pokemon-type-container">
+            <span class="pokemon-type-item"
+                [ngStyle]="{'background-color': getTypeColor(pokemon.type_1)}">{{getPokemonType(pokemon.type_1)}}</span>
+            <span *ngIf="pokemon.type_2 !== null" class="pokemon-type-item"
+                [ngStyle]="{'background-color': getTypeColor(pokemon.type_2)}">{{getPokemonType(pokemon.type_2)}}</span>
+        </div>
+    </div>
+</div>
