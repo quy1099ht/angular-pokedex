@@ -1,3 +1,5 @@
+import { SafeUrl } from "@angular/platform-browser";
+
 export interface CurrencyData {
     id: number;
     currency: string;
@@ -7,7 +9,7 @@ export interface CurrencyData {
 
 export interface Pokemon {
     id: string;
-    image: string | null;
+    image: SafeUrl | null;
     number: number;
     name: string;
     type_1: number;

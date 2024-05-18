@@ -3,6 +3,7 @@
 h2 {
   text-align: center;
 }
+
 .grid-container2 {
   display: grid;
   padding-top: 10px;
@@ -163,4 +164,8 @@ th {
   justify-content: center;
   border: 3px solid #ddd;
   border-radius: 100px;
+}
+
+.pointer {
+  cursor: pointer;
 }

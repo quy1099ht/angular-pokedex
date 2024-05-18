@@ -1,0 +1,27 @@
+<div class="pokemon-card" *ngIf="pokemon">
+    <div class="header">
+        <h2>{{ pokemon.name }}</h2>
+        <div>{{ pokemon.hp }} HP</div>
+    </div>
+    <div class="pokemon-image">
+        <img [src]="pokemon.image" [alt]="pokemon.name" />
+    </div>
+    <div class="pokemon-info">
+
+    </div>
+    <div class="main-content">
+        <div class="national-id">
+            <h3>{{ pokemon.number | formatNumber }}</h3>
+            <p>National ID</p>
+        </div>
+        <div class="pokemon-abilities">
+            <div>Attack: {{ pokemon.attack }}</div>
+            <div>Defense: {{ pokemon.defense }}</div>
+            <div>Speed: {{ pokemon.speed }}</div>
+            <div>Special Attack: {{ pokemon.sp_atk }}</div>
+            <div>Special Defense: {{ pokemon.sp_def }}</div>
+            <div>Generation: {{ pokemon.generation }}</div>
+            <div>Legendary: {{ pokemon.legendary ? 'Yes' : 'No' }}</div>
+        </div>
+    </div>
+</div>

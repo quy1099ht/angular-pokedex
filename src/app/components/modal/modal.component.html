@@ -1,1 +1,10 @@
-<p>modal works!</p>
+<div class="modal-overlay" (click)="closeModal()"></div>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2>{{title}}</h2>
+    <button (click)="closeModal()">X</button>
+  </div>
+  <div class="modal-body">
+    <ng-content style="position: relative;"></ng-content>
+  </div>
+</div>

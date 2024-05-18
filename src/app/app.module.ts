@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PokedexInterceptor } from './shared/interceptors/pokedex-interceptor';
 import { FormatNumberPipe } from './shared/pipes/format-number.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { PokemonInfoComponent } from './components/pokemon-info/pokemon-info.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -22,7 +23,7 @@ import { ModalComponent } from './components/modal/modal.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    
+    PokemonInfoComponent
   ],
   providers: [
     {

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -8,5 +8,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
+  @Output() close = new EventEmitter<void>();
+  @Input() title: string = '';
 
+  closeModal() {
+    this.close.emit();
+  }
 }

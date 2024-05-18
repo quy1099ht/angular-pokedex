@@ -25,8 +25,13 @@ export class DashboardComponent implements OnInit {
 
   finalPage: number = 0;
 
+  selectedPokemon: Pokemon | null = null;
+
+  showModal = false;
+
   constructor(
     private pokemonService: PokemonServices,
+    private sanitizer: DomSanitizer,
   ) { }
 
   ngOnInit(): void {
@@ -96,5 +101,21 @@ export class DashboardComponent implements OnInit {
         this.finalPage = val.meta.last_page;
       }),
     })
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+  }
+
+  getPokemonInfo(id: string) {
+    const pokemon = this.listOfPokemons.filter(pkm => pkm.id === id)[0];
+
+    this.pokemonService.getPokemonSprite(pokemon.id).subscribe({next:(blob)=>{
+      let objectURL = URL.createObjectURL(blob);    
+      const url = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      pokemon.image = url;      
+      this.selectedPokemon = pokemon;
+      this.showModal = true;
+    },})
   }
 }
