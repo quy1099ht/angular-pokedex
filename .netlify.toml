@@ -1,0 +1,6 @@
+[build]
+  command = "npm install --legacy-peer-deps && ng build --prod"
+  publish = "dist"            
+  environment = {              
+    SKIP_AUTO_BUILD: true      
+  }
