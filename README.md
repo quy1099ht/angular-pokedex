@@ -13,7 +13,7 @@ This is a simple Angular project.
 2. **Install Dependencies:**
 
     ```bash
-    npm install --legacy-peer-deps
+    npm install
     ```
 
 ## Development Server
