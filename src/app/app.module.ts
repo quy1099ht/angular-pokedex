@@ -12,6 +12,7 @@ import { FormatNumberPipe } from './shared/pipes/format-number.pipe';
 import { ModalComponent } from './components/modal/modal.component';
 import { PokemonInfoComponent } from './components/pokemon-info/pokemon-info.component';
 import { PokemonItemComponent } from './components/pokemon-item/pokemon-item.component';
+import { LoaderComponent } from './components/loader/loader.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,6 +27,7 @@ import { PokemonItemComponent } from './components/pokemon-item/pokemon-item.com
     DashboardComponent,
     PokemonInfoComponent,
     PokemonItemComponent,
+    LoaderComponent,
   ],
   providers: [
     {
