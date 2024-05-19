@@ -27,7 +27,9 @@ export class DashboardComponent implements OnInit {
 
   selectedPokemon: Pokemon | null = null;
 
-  showModal = false;
+  showModal: boolean = false;
+
+  isLoadingSelectedPokemon: boolean = false;
 
   constructor(
     private pokemonService: PokemonServices,
@@ -48,14 +50,14 @@ export class DashboardComponent implements OnInit {
   onSortChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedSort = target.value as SortParam;
-    this.listOfPokemons = []
+    this.currentPage = 1;
     this.fetchPokemonsData()
   }
 
   onFilterChange(event: Event) {
     const target = event.target as HTMLSelectElement;
     this.selectedFilter = target.value as unknown as number;
-    this.listOfPokemons = [];
+    this.currentPage = 1;
     this.fetchPokemonsData();
   }
 
@@ -65,7 +67,6 @@ export class DashboardComponent implements OnInit {
 
   changePage(isPlus: boolean) {
     this.currentPage += isPlus ? 1 : -1;
-    this.listOfPokemons = [];
     this.fetchPokemonsData()
   }
 
@@ -75,19 +76,22 @@ export class DashboardComponent implements OnInit {
 
   getPokemonInfo(id: string) {
     const pokemon = this.listOfPokemons.filter(pkm => pkm.id === id)[0];
-
+    this.isLoadingSelectedPokemon = true;
+    this.showModal = true;
     this.pokemonService.getPokemonSprite(pokemon.id).subscribe({
       next: (blob) => {
         let objectURL = URL.createObjectURL(blob);
         const url = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         pokemon.image = url;
         this.selectedPokemon = pokemon;
-        this.showModal = true;
+        
+        this.isLoadingSelectedPokemon = false;
       },
     })
   }
 
   fetchPokemonsData() {
+    this.listOfPokemons = []
     this.pokemonService.getListOfPokemons({
       pageNumber: this.currentPage,
       sort: this.selectedSort,

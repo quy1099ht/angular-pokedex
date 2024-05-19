@@ -1,8 +1,10 @@
 <div style="padding-left: 35%;">
   <app-modal [title]="'Pokemon Card'" *ngIf="showModal" (close)="toggleModal()">
-    <app-pokemon-info [pokemon]="selectedPokemon" />
+    <app-loader [loadingCondition]="isLoadingSelectedPokemon" />
+    <app-pokemon-info *ngIf="!isLoadingSelectedPokemon" [pokemon]="selectedPokemon" />
   </app-modal>
 </div>
+
 <div class="page-container">
   <div class="image-container">
     <img class="image-size"
@@ -38,8 +40,6 @@
     <button (click)="changePage(true)" [disabled]="currentPage === finalPage" class="next">Next &raquo;</button>
   </div>
 
-  <div class="loading-container">
-    <div *ngIf="listOfPokemons.length === 0" class="loader"></div>
-  </div>
+  <app-loader [loadingCondition]="listOfPokemons.length === 0" />
 
 </div>
